@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 560px;
+      width: 100%;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #e94560;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #a0aec0;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .signup-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .signup-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.85rem 1.2rem;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .signup-form input[type="email"]::placeholder {
+      color: #718096;
+    }
+
+    .signup-form input[type="email"]:focus {
+      border-color: #e94560;
+    }
+
+    .signup-form button {
+      padding: 0.85rem 1.8rem;
+      background: #e94560;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .signup-form button:hover {
+      background: #c73652;
+    }
+
+    .signup-form button:active {
+      transform: scale(0.97);
+    }
+
+    .signup-form button:disabled {
+      background: #718096;
+      cursor: not-allowed;
+    }
+
+    #form-message {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      min-height: 1.4em;
+    }
+
+    #form-message.success {
+      color: #68d391;
+    }
+
+    #form-message.error {
+      color: #fc8181;
+    }
+
+    .social-links {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .social-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Sergenya</div>
+
+    <h1>Something amazing<br>is coming soon.</h1>
+
+    <p class="subtitle">
+      We're working hard to bring you something great.<br>
+      Be the first to know when we launch.
+    </p>
+
+    <form class="signup-form" id="signupForm" novalidate>
+      <input
+        type="email"
+        id="emailInput"
+        name="email"
+        placeholder="Enter your email address"
+        required
+        autocomplete="email"
+      />
+      <button type="submit" id="submitBtn">Notify Me</button>
+    </form>
+
+    <p id="form-message" role="status" aria-live="polite"></p>
+
+    <div class="social-links">
+      <a href="#" aria-label="Twitter">Twitter</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+  </div>
+
+  <script>
+    // ---------------------------------------------------------------
+    // Replace this URL with your deployed Google Apps Script Web App URL
+    // See code.gs for the Apps Script code to deploy
+    // ---------------------------------------------------------------
+    const APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+    const form = document.getElementById('signupForm');
+    const emailInput = document.getElementById('emailInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showMessage('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      if (APPS_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+        showMessage('Setup required: add your Google Apps Script URL. See code.gs.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      clearMessage();
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ email })
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+          showMessage('You\'re on the list! We\'ll notify you at launch.', 'success');
+          form.reset();
+        } else {
+          showMessage(result.message || 'Something went wrong. Please try again.', 'error');
+        }
+      } catch (err) {
+        showMessage('Could not connect. Please try again later.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Notify Me';
+      }
+    });
+
+    function showMessage(msg, type) {
+      formMessage.textContent = msg;
+      formMessage.className = type;
+    }
+
+    function clearMessage() {
+      formMessage.textContent = '';
+      formMessage.className = '';
+    }
+  </script>
+</body>
+</html>
