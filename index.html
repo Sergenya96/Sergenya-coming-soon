@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0KTVBEERV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y0KTVBEERV');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sergenya — Your Wedding. Rooted in Ethiopia.</title>
-<meta name="description" content="Sergenya — Ethiopia's first curated wedding vendor platform. Coming 2027.">
+<meta name="description" content="Sergenya — Ethiopia's first curated wedding vendor platform. Launching Soon.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -263,16 +271,93 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── TABLET ── */
+  @media (max-width: 768px) {
+    header { padding: 32px 32px; }
+    .hero { padding: 32px 32px 52px; }
+    .hero-headline { font-size: clamp(48px, 10vw, 80px); }
+    .cta-section { max-width: 100%; }
+    footer { padding: 24px 32px; gap: 12px; }
+  }
+
   /* ── MOBILE ── */
   @media (max-width: 640px) {
-    header { padding: 28px 20px; }
+    /* Header */
+    header { padding: 24px 20px; }
     .header-right { display: none; }
-    .hero { padding: 40px 20px 40px; }
-    .hero-headline { font-size: 54px; }
-    .form-row { flex-direction: column; }
-    .form-btn { width: 100%; padding: 16px; text-align: center; }
-    footer { flex-direction: column; gap: 14px; padding: 24px 20px; text-align: center; }
+    .logo-main { font-size: 22px; }
+    .logo-amharic { font-size: 11px; }
+
+    /* Hero */
+    .hero {
+      padding: 24px 20px 48px;
+      justify-content: flex-start;
+      padding-top: 32px;
+    }
+    .hero-eyebrow { margin-bottom: 24px; gap: 10px; }
+    .eyebrow-line { width: 32px; }
+    .eyebrow-text { font-size: 10px; letter-spacing: 0.18em; }
+    .hero-headline {
+      font-size: clamp(42px, 11vw, 56px);
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 4vw, 19px);
+      margin-bottom: 36px;
+      padding: 0 4px;
+    }
+    .gold-rule { margin: 0 auto 36px; }
+
+    /* CTA Tabs */
+    .cta-section { max-width: 100%; }
+    .cta-tabs { flex-direction: column; }
+    .cta-tab {
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 14px 16px;
+      font-size: 13px;
+    }
+    .cta-tab:last-child { border-bottom: none; }
+
+    /* Form */
+    .form-row { flex-direction: column; gap: 10px; }
+    .form-input {
+      width: 100%;
+      font-size: 16px; /* prevents iOS zoom on focus */
+      padding: 15px 16px;
+      box-sizing: border-box;
+    }
+    .form-btn {
+      width: 100%;
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+    }
+    .form-note { font-size: 11px; padding: 0 4px; }
+
+    /* Success message */
+    .success-msg { padding: 20px 16px; }
+    .success-msg p { font-size: 18px; }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px 20px 28px;
+      text-align: center;
+    }
+    .footer-brand { font-size: 14px; }
+    .footer-links { gap: 16px; justify-content: center; }
+    .footer-links a { font-size: 12px; }
     .footer-copy { display: none; }
+  }
+
+  /* ── VERY SMALL PHONES (iPhone SE etc.) ── */
+  @media (max-width: 375px) {
+    .hero-headline { font-size: 38px; }
+    .hero-sub { font-size: 15px; }
+    .cta-tab { font-size: 12px; padding: 12px 12px; }
   }
 </style>
 </head>
@@ -285,11 +370,11 @@
   <header>
     <div class="logo">
       <span class="logo-main">Sergenya</span>
-      <span class="logo-amharic">ሰርገኛ</span>
+      <span class="logo-amharic">ሠርገኛ</span>
     </div>
     <div class="header-right">
-      <span class="header-tag">Launching 2027</span>
-      <a class="header-contact" href="mailto:hello@sergenya.com">hello@sergenya.com</a>
+      <span class="header-tag">Launching Soon</span>
+      <a class="header-contact" href="/cdn-cgi/l/email-protection#234b464f4f4c6350465144464d5a420d404c4e"><span class="__cf_email__" data-cfemail="4c24292020230c3f293e2b2922352d622f2321">[email&#160;protected]</span></a>
     </div>
   </header>
 
@@ -341,23 +426,62 @@
 
       <div class="success-msg" id="success">
         <p>&ldquo;You're on the list &mdash; welcome to Sergenya.&rdquo;</p>
-        <span>We'll be in touch before anyone else. ሰርገኛ.</span>
+        <span>We'll be in touch before anyone else. ሠርገኛ.</span>
       </div>
 
     </div></section>
 
   <footer>
-    <div class="footer-brand">Sergenya <span>ሰርገኛ</span></div>
+    <div class="footer-brand">Sergenya <span>ሠርገኛ</span></div>
     <div class="footer-links">
-      <a href="mailto:hello@sergenya.com">hello@sergenya.com</a>
-      <a href="#">Instagram</a>
+      <a href="/cdn-cgi/l/email-protection#5c34393030331c2f392e3b3932253d723f3331"><span class="__cf_email__" data-cfemail="85ede0e9e9eac5f6e0f7e2e0ebfce4abe6eae8">[email&#160;protected]</span></a>
+      <a href="https://www.instagram.com/sergenya.co/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
     <div class="footer-copy">&copy; 2026 Sergenya. All rights reserved.</div>
   </footer>
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function switchTab(tab, el) {
-    document.querySelectorAll('.cta-tab').forEach(t => t.classList.remove('active'));
-  
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwNawI4oko3ja8wPGTNnjblwMhl5wGG145TTuhqdav9KLZ_BN5AIxf1ZC4LuYehgFzC/exec";
+
+  function switchTab(type, el) {
+    document.querySelectorAll(".cta-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".form-panel").forEach(p => p.classList.remove("active"));
+    el.classList.add("active");
+    document.getElementById("panel-" + type).classList.add("active");
+    document.getElementById("success").classList.remove("show");
+  }
+
+  async function handleSubmit(type) {
+    const inputId = type === "couples" ? "couple-email" : "vendor-email";
+    const emailEl = document.getElementById(inputId);
+    const email = emailEl.value.trim();
+    const btn = emailEl.parentElement.querySelector(".form-btn");
+
+    if (!email || !email.includes("@")) {
+      emailEl.style.borderColor = "rgba(255,100,100,0.6)";
+      emailEl.placeholder = "Please enter a valid email";
+      setTimeout(() => {
+        emailEl.style.borderColor = "";
+        emailEl.placeholder = type === "couples" ? "Your email address" : "Your business email";
+      }, 2500);
+      return;
+    }
+
+    btn.textContent = "Submitting...";
+    btn.disabled = true;
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, type })
+      });
+
+      emailEl.value = "";
+      document.querySelectorAll(".form-panel").forEach(p => p.classList.remove("active"));
+      document.getElementById("success").classList.add("show");
+
+    } catch (err) {
