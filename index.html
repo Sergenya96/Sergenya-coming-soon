@@ -373,6 +373,15 @@
       input.focus();
       return;
     }
+
+    var email = input.value;
+    var label = type === 'couples' ? 'Couple' : 'Vendor';
+
+    fetch('https://script.google.com/macros/s/AKfycbztD06T3uGx6g5uYQU9lrViO2lCuZkfqzeCbG86sikRK96QblR3M1XqerG4SsrvxEc2HQ/exec', {
+      method: 'POST',
+      body: JSON.stringify({ email: email, type: label })
+    });
+
     document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('success').classList.add('show');
   }
